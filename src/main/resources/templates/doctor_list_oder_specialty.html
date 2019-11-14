@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>Doctor</title>
+<th:block th:include="layout/header"></th:block>
+
+<link rel="stylesheet" th:href="@{/css/jquery.dataTables.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src = "@{/js/jquery.dataTables.min.js}"></script>
+ 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#table_id').DataTable();
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+
+		<div th:if="${not #lists.isEmpty(list)}">
+			<h2>All Doctor order by Specialty</h2>
+
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>DNI</th>
+						<th>Specialty</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="e : ${list}">
+						<td th:text="${e.id}">Id</td>
+						<td th:text="${e.firstName}">First Name</td>
+						<td th:text="${e.lastName}">Last Name</td>
+						<td th:text="${e.dni}">DNI</td>
+						<td th:text="${e.specialty}">Specialty</td>
+
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

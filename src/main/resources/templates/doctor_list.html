@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>Doctor</title>
+<th:block th:include="layout/header"></th:block>
+<link rel="stylesheet" th:href="@{/css/jquery.dataTables.min.css}">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#table_id').DataTable();
+	});
+</script>
+</head>
+<body>
+	<div class="container">
+		<a class="btn btn-primary" role="button"  th:href="@{/doctorController/edit/0}">Nuevo</a> 
+		<a class="btn btn-primary" role="button"
+			th:href="@{/doctorController/findAll/orderyBySpecialty}">Order by
+			Specialty</a>
+		<div th:if="${not #lists.isEmpty(list)}">
+			<h2>All Doctor</h2>
+			<table id="table_id" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>DNI</th>
+					<th>Especialidad</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+				</thead>
+			<tbody>
+				<tr th:each="e : ${list}">
+					<td th:text="${e.id}">Id</td>
+					<td th:text="${e.firstName}">First Name</td>
+					<td th:text="${e.lastName}">Last Name</td>
+					<td th:text="${e.dni}">DNI</td>
+					<td th:text="${e.specialty.name}">CMP</td>
+					<td><a th:href="@{'/doctorController/edit/'+${e.id}}"
+						class="btn btn-default">Edit</a></td>
+					<td><a th:href="@{'/doctorController/deleteById/'+${e.id}}"
+						class="btn btn-danger">Delete</a></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

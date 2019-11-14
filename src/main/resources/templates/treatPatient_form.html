@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>Edit Patient Details</title>
+<th:block th:include="layout/header"></th:block>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<script th:src="@{/js/jquery.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>Edit Treat Patient Details</h2>
+		<div align="center">
+			<form class="form-horizontal" 
+				th:action="@{/treatPatientController/save}" th:method="post">
+			
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Doctor:</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="idDoctor" name="idDoctor">
+							<option selected>Select a doctor</option>
+							<option th:each="d : ${listDoctor}" th:value="${d.id}"
+								th:text="${d.completeName()}">One</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Patient:</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="idPatient" name="idPatient">
+							<option selected>Select a patient</option>
+							<option th:each="d : ${listPatient}" th:value="${d.id}"
+								th:text="${d.completeName()}">One</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Date:</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" th:text="${dateMedical}" 
+						id="dateMedical" name="dateMedical" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Diagnostic
+						Consultation:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							th:text="${diagnosticConsultation}"
+							id="diagnosticConsultation" name="diagnosticConsultation" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Treatment
+						Consultation:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							th:text="${treatmentConsultation}"
+							id="treatmentConsultation" name="treatmentConsultation" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<div class="col-sm-2">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

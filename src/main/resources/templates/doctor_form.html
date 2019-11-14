@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>Edit Doctor Details</title>
+<th:block th:include="layout/header"></th:block>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<script th:src="@{/js/jquery.min.js}"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>Edit Doctor Details</h2>
+		<div>
+			<form class="form-horizontal" th:action="@{/doctorController/save}"
+				th:method="post">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Id:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="id" name="id"
+							th:value="${entity.id}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">First Name:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="firstName"
+							name="firstName" th:value="${entity.firstName}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Last Name:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="lastName"
+							name="lastName" th:value="${entity.lastName}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">DNI:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="dni" name="dni"
+							th:value="${entity.dni}" />
+					</div>
+				</div>
+
+				<div class="form-group" th:if="${id!=0}">
+					<label class="col-sm-2 control-label">Especialidad:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="nameSpecialty" name="nameSpecialty" disabled="true"
+							th:value="${entity.specialty.name}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label" th:if="${id>1}">Cambiar de especialidad:</label>
+					<label class="col-sm-2 control-label" th:if="${id<1}">Escoja una especialidad:</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="idSpecialty" name="idSpecialty">
+							<option selected>Select a specialty</option>
+							<option th:each="d : ${listSpecialty}" th:value="${d.id}"
+								th:text="${d.name}">One</option>
+						</select>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<div class="col-sm-2">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

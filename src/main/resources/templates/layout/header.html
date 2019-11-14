@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+<script th:src="@{/js/jquery.min.js}"></script>
+</head>
+<body>
+
+	<div class="container">
+		<div th:fragment="header">
+			<nav class="navbar navbar-light bg-light"
+				style="background-color: #f8f9fa !important">
+				<a class="navbar-brand">Proyecto</a>
+				<div class="container-fluid">
+
+					<ul class="nav navbar-nav">
+					<li><a th:href="@{/home}"style="background-color: antiquewhite;">ADMIN</a>
+						<li><a th:href="@{/specialtyController/findAll}" style="background-color: antiquewhite;">Specialty</a>
+						</li>
+						<li><a th:href="@{/doctorController/findAll}" style="background-color: antiquewhite;">Doctor</a></li>
+						<li><a th:href="@{/patientController/findAll}" style="background-color: antiquewhite;">Patient | </a></li>
+						<li><a href="#" style="background-color: lavender;">DOCTOR</a>
+						<li><a th:href="@{/treatPatientController/edit/0}" style="background-color: lavender;">| Diagnostic & Treatment  </a></li>
+						<li><a th:href="@{/treatPatientController/findAll}" style="background-color: lavender;"> Reportes  </a></li>
+						<li>
+							<form th:action="@{/logout}" method="post">
+								<input  class="btn btn-info" type="submit" value="Cerrar Sesion" />
+							</form>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+		</div>
+	</div>
+
+</body>
+</html>
